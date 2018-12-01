@@ -19,9 +19,10 @@ public class GameBoardTest {
         gameBoard = new GameBoard(8);
 
         //when
+        int size = gameBoard.getGrid().length;
 
         //then
-        assertEquals(gameBoard.getGrid().length, 8);
+        assertEquals(size, 8);
     }
 
     @Test
@@ -48,7 +49,7 @@ public class GameBoardTest {
     @Test
     public void should_modif_of_box_when_set_value() {
         //given
-        Coordinates coordinates = new Coordinates(0,0);
+        Coordinates coordinates = new Coordinates(0, 0);
         gameBoard = new GameBoard(1);
 
         //when
@@ -57,4 +58,42 @@ public class GameBoardTest {
         //then
         assertEquals(gameBoard.getValue(coordinates), 2);
     }
+
+    @Test
+    public void should_return_size() {
+        //given
+        gameBoard = new GameBoard(4);
+
+        //when
+        int size = gameBoard.getSize();
+
+        //then
+        assertEquals(size, 4);
+    }
+
+    @Test
+    public void should_return_true_when_grid_contain_the_value_zero() {
+        //given
+        int grid[][] = {{1, 0}, {1, 1}};
+        gameBoard = new GameBoard(2);
+        gameBoard.setGrid(grid);
+
+        //when
+        boolean containZero = gameBoard.containWhiteColor();
+
+        //then
+        assertTrue(containZero);
+    }
+
+    @Test
+    public void should_return_grid_with_all_boxes_at_zero_when_init_grid() {
+        //given
+        gameBoard = new GameBoard(10);
+
+        //when
+
+        //then
+        assertTrue(gameBoard.containWhiteColor());
+    }
+
 }

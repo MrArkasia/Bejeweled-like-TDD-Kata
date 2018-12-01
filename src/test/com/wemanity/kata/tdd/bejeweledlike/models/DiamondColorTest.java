@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class DiamondColorTest {
 
@@ -104,5 +105,18 @@ public class DiamondColorTest {
         //then
         assertEquals(color, Color.WHITE);
     }
+
+    @Test
+    public void should_return_random_color() {
+        //given
+        int color = diamondColor.getRandomColor();
+
+        //when
+
+        //then
+        assertTrue(color > 0 && color <= 6);
+    }
+
+
 
 }
