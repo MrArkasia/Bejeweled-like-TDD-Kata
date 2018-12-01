@@ -17,5 +17,4 @@ public class Score {
     public int getValue() {
         return value;
     }
-
 }
