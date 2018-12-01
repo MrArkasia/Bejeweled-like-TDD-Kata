@@ -112,4 +112,43 @@ public class GameBoardRulesTest {
         //then
         assertFalse(isAligned);
     }
+
+    @Test
+    public void should_return_true_when_swap_is_possible() {
+        //given
+        Coordinates box1 = new Coordinates(0, 0);
+        Coordinates box2 = new Coordinates(0, 1);
+        int grid[][] = {
+                {1, 4, 1, 1},
+                {2, 3, 2, 2},
+                {3, 2, 3, 3},
+                {4, 1, 4, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isValid = gameBoardRules.isValidSwap(box1, box2);
+
+        //then
+        assertTrue(isValid);
+    }
+
+    @Test
+    public void should_return_false_when_swap_is_not_possible() {
+        //given
+        Coordinates box1 = new Coordinates(0, 0);
+        Coordinates box2 = new Coordinates(0, 1);
+        int grid[][] = {
+                {1, 5, 4, 1},
+                {4, 3, 3, 2},
+                {3, 2, 5, 3},
+                {4, 5, 1, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isValid = gameBoardRules.isValidSwap(box1, box2);
+
+        //then
+        assertFalse(isValid);
+    }
+
 }

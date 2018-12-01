@@ -96,4 +96,31 @@ public class GameBoardRules {
         }
         return modified;
     }
+
+    /**
+     * Determines whether the exchange between two boxes is valid
+     */
+    public boolean isValidSwap(Coordinates box1, Coordinates box2) {
+
+        if (box1.x == -1 || box2.x == -1 || box1.y == -1 || box2.y == -1) return false;
+        if (Math.abs(box2.x - box1.x) + Math.abs(box2.y - box1.y) != 1) return false;
+        if (gameBoard.getValue(box1) == gameBoard.getValue(box2)) return false;
+
+        swap(box1, box2);
+
+        // we check that it creates a new alignment
+        boolean newAlignment = false;
+        for (int i = 0; i < 3; i++) {
+            newAlignment |= horizontalAligned(box1.x - i, box1.y);
+            newAlignment |= horizontalAligned(box2.x - i, box2.y);
+            newAlignment |= verticalAligned(box1.x, box1.y - i);
+            newAlignment |= verticalAligned(box2.x, box2.y - i);
+        }
+
+        // then we cancel the exchange
+        swap(box1, box2);
+
+        return newAlignment;
+    }
+
 }

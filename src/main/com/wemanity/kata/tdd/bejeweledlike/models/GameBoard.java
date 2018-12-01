@@ -6,10 +6,10 @@ public class GameBoard {
 
     public GameBoard(int size) {
         this.grid = new int[size][size];
-        init(size);
+        gridInit(size);
     }
 
-    private void init(int size) {
+    private void gridInit(int size) {
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 grid[i][j] = 0;
