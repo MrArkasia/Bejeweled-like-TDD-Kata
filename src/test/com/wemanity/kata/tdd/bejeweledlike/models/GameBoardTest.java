@@ -44,4 +44,17 @@ public class GameBoardTest {
 
         //then
     }
+
+    @Test
+    public void should_modif_of_box_when_set_value() {
+        //given
+        Coordinates coordinates = new Coordinates(0,0);
+        gameBoard = new GameBoard(1);
+
+        //when
+        gameBoard.setValue(coordinates, 2);
+
+        //then
+        assertEquals(gameBoard.getValue(coordinates), 2);
+    }
 }

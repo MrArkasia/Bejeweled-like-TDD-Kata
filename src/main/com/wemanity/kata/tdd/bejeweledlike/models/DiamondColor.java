@@ -2,7 +2,7 @@ package com.wemanity.kata.tdd.bejeweledlike.models;
 
 public class DiamondColor {
 
-    private java.awt.Color colors[] = {
+    private static final java.awt.Color colors[] = {
             java.awt.Color.WHITE,
             java.awt.Color.RED,
             java.awt.Color.GREEN,
@@ -12,7 +12,7 @@ public class DiamondColor {
             java.awt.Color.CYAN
     };
 
-    public java.awt.Color getColor(int i) {
+    public static java.awt.Color getColor(int i) {
         return colors[i];
     }
 
