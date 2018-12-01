@@ -1,7 +1,6 @@
 package com.wemanity.kata.tdd.bejeweledlike.rules;
 
 import com.wemanity.kata.tdd.bejeweledlike.models.Coordinates;
-import com.wemanity.kata.tdd.bejeweledlike.models.GameBoard;
 import org.junit.Before;
 import org.junit.Test;
 

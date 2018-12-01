@@ -5,14 +5,16 @@ import java.awt.*;
 
 public class Window extends JFrame {
 
+    private static final int BOX_SIZE = 32;
+
     public void create(int size) {
         final GameView gameView = new GameView(size);
         final JFrame window = new JFrame();
-        window.setTitle("Diamond Mine");
-        window.setSize(800, 600);
+        window.setTitle("Bejeweled Like");
+        window.setSize(size * BOX_SIZE + 5, size * BOX_SIZE + 45);
         window.setResizable(false);
         window.setBackground(Color.WHITE);
-        window.add(gameView);
+        window.add(gameView, BorderLayout.CENTER);
         window.setLocationRelativeTo(null);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.getContentPane().validate();

@@ -3,6 +3,7 @@ package com.wemanity.kata.tdd.bejeweledlike.rules;
 import com.wemanity.kata.tdd.bejeweledlike.models.Coordinates;
 import com.wemanity.kata.tdd.bejeweledlike.models.DiamondColor;
 import com.wemanity.kata.tdd.bejeweledlike.models.GameBoard;
+import com.wemanity.kata.tdd.bejeweledlike.models.Score;
 
 public class GameBoardRules {
 
@@ -11,7 +12,7 @@ public class GameBoardRules {
 
     public GameBoardRules(int size) {
         this.gameBoard = new GameBoard(size);
-        marked = new boolean[size][size];
+        this.marked = new boolean[size][size];
     }
 
     public GameBoard getGameBoard() {
@@ -91,6 +92,7 @@ public class GameBoardRules {
                     gameBoard.setValue(new Coordinates(i, j), 0);
                     marked[i][j] = false;
                     modified = true;
+                    Score.getInstance().increase(1);
                 }
             }
         }

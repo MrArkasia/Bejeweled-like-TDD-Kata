@@ -2,6 +2,7 @@ package com.wemanity.kata.tdd.bejeweledlike.view;
 
 import com.wemanity.kata.tdd.bejeweledlike.models.Coordinates;
 import com.wemanity.kata.tdd.bejeweledlike.models.DiamondColor;
+import com.wemanity.kata.tdd.bejeweledlike.models.Score;
 import com.wemanity.kata.tdd.bejeweledlike.rules.GameBoardRules;
 
 import javax.swing.*;
@@ -12,8 +13,10 @@ import java.awt.event.MouseMotionListener;
 
 public class GameView extends JPanel implements MouseListener, MouseMotionListener, Runnable {
 
+    private static final int BOX_SIZE = 32;
+
     private final GameBoardRules gameBoardRules;
-    private final int gridSize;
+    private final int nbBox;
 
     private int selectedX = -1;
     private int selectedY = -1;
@@ -23,8 +26,8 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
     Image buffer;
 
     public GameView(int size) {
-        gameBoardRules = new GameBoardRules(size);
-        gridSize = size;
+        this.gameBoardRules = new GameBoardRules(size);
+        this.nbBox = size;
     }
 
     /**
@@ -49,7 +52,7 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
     public void init() {
         new Thread(this).start();
         // fill the grid for the first time
-        while (gameBoardRules.fill());
+        while (gameBoardRules.fill()) ;
         while (gameBoardRules.removeAlignments()) {
             gameBoardRules.fill();
         }
@@ -65,42 +68,43 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
 
         super.paint(g2);
 
-        if (buffer == null) buffer = createImage(800, 600);
+        if (buffer == null) buffer = createImage(nbBox * BOX_SIZE + 5, nbBox * BOX_SIZE + 25);
         Graphics2D g = (Graphics2D) buffer.getGraphics();
 
-        // fond
+        // background
         g.setColor(Color.WHITE);
-        g.fillRect(1, 1, 32 * gridSize, 32 * gridSize); //getWidth(), getHeight());
+        g.fillRect(1, 1, BOX_SIZE * nbBox, BOX_SIZE * nbBox); //getWidth(), getHeight());
 
-        // afficher la grille vide
+        // display the empty grid
         g.setColor(Color.BLACK);
-        for (int i = 0; i < gridSize + 1; i++) {
-            g.drawLine(32 * i + 1, 1, 32 * i + 1, gridSize * 32 + 1 + 1);
-            g.drawLine(1, 32 * i + 1, gridSize * 32 + 1 + 1, 32 * i + 1);
+        for (int i = 0; i < nbBox + 1; i++) {
+            g.drawLine(BOX_SIZE * i + 1, 1, BOX_SIZE * i + 1, nbBox * BOX_SIZE + 1 + 1);
+            g.drawLine(1, BOX_SIZE * i + 1, nbBox * BOX_SIZE + 1 + 1, BOX_SIZE * i + 1);
         }
 
-        // afficher la première case sélectionnée
+        // show the first box selected
         if (selectedX != -1 && selectedY != -1) {
             g.setColor(Color.ORANGE);
-            g.fillRect(selectedX * 32 + 1 + 1, selectedY * 32 + 1 + 1, 31, 31);
+            g.fillRect(selectedX * BOX_SIZE + 1 + 1, selectedY * BOX_SIZE + 1 + 1, BOX_SIZE - 1, BOX_SIZE - 1);
         }
 
-        // afficher la deuxième case sélectionnée
+        // display the second selected box
         if (swappedX != -1 && swappedY != -1) {
             g.setColor(Color.YELLOW);
-            g.fillRect(swappedX * 32 + 1 + 1, swappedY * 32 + 1 + 1, 31, 31);
+            g.fillRect(swappedX * BOX_SIZE + 1 + 1, swappedY * BOX_SIZE + 1 + 1, BOX_SIZE - 1, BOX_SIZE - 1);
         }
 
-        // afficher le contenu de la grille
-        for (int i = 0; i < gridSize; i++) {
-            for (int j = 0; j < gridSize; j++) {
+        // display the contents of the grid
+        for (int i = 0; i < nbBox; i++) {
+            for (int j = 0; j < nbBox; j++) {
                 final int boxValue = gameBoardRules.getGameBoard().getValue(new Coordinates(i, j));
                 final Color color = DiamondColor.getColor(boxValue);
                 g.setColor(color);
-                g.fillOval(32 * i + 3 + 1, 32 * j + 3 + 1, 27, 27);
+                g.fillOval(BOX_SIZE * i + 3 + 1, BOX_SIZE * j + 3 + 1, 27, 27);
             }
         }
         g2.drawImage(buffer, 0, 0, null);
+        g2.drawString("Score : " + Score.getInstance().getValue(), 5, nbBox * BOX_SIZE + 15);
     }
 
     /**
@@ -123,8 +127,8 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
     @Override
     public void mousePressed(MouseEvent e) {
         // press the mouse button: retrieve the coordinates of the first box
-        selectedX = (e.getX() / 32);
-        selectedY = (e.getY() / 32);
+        selectedX = (e.getX() / BOX_SIZE);
+        selectedY = (e.getY() / BOX_SIZE);
         System.out.println("selectedX " + selectedX + " selectedY " + selectedY);
         rePaint();
     }
@@ -132,8 +136,8 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
     @Override
     public void mouseMoved(MouseEvent e) {
         if (selectedX != -1 && selectedY != -1) {
-            swappedX = (e.getX() / 32);
-            swappedY = (e.getY() / 32);
+            swappedX = (e.getX() / BOX_SIZE);
+            swappedY = (e.getY() / BOX_SIZE);
             // if the exchange is invalid, we hide the second box
             if (!(gameBoardRules.isValidSwap(new Coordinates(selectedX, selectedY), new Coordinates(swappedX, swappedY)))) {
                 swappedX = swappedY = -1;

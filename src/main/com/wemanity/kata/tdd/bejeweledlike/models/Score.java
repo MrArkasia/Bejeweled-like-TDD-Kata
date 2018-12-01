@@ -4,7 +4,13 @@ public class Score {
 
     private int value;
 
-    public Score() {
+    private static Score instance = new Score();
+
+    public static Score getInstance() {
+        return instance;
+    }
+
+    private Score() {
         value = 0;
     }
 

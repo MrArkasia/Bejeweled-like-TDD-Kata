@@ -117,6 +117,4 @@ public class DiamondColorTest {
         assertTrue(color > 0 && color <= 6);
     }
 
-
-
 }

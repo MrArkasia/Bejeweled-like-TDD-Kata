@@ -11,7 +11,7 @@ public class ScoreTest {
 
     @Before
     public void setUp() throws Exception {
-        score = new Score();
+        score = Score.getInstance();
     }
 
     @Test
