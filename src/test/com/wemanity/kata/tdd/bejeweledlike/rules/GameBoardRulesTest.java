@@ -1,6 +1,7 @@
 package com.wemanity.kata.tdd.bejeweledlike.rules;
 
 import com.wemanity.kata.tdd.bejeweledlike.models.Coordinates;
+import com.wemanity.kata.tdd.bejeweledlike.models.GameBoard;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,5 +43,73 @@ public class GameBoardRulesTest {
 
         //then
         assertTrue(modified);
+    }
+
+    @Test
+    public void should_return_true_when_grid_contain_horizontal_Alignement() {
+        //given
+        int grid[][] = {
+                {1, 2, 3, 4},
+                {1, 2, 3, 4},
+                {1, 2, 3, 4},
+                {1, 2, 3, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isAligned = gameBoardRules.horizontalAligned(0, 0);
+
+        //then
+        assertTrue(isAligned);
+    }
+
+    @Test
+    public void should_return_true_when_grid_does_not_contain_horizontal_Alignement() {
+        //given
+        int grid[][] = {
+                {1, 2, 3, 4},
+                {4, 3, 2, 1},
+                {1, 2, 3, 4},
+                {1, 2, 3, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isAligned = gameBoardRules.horizontalAligned(0, 0);
+
+        //then
+        assertFalse(isAligned);
+    }
+
+    @Test
+    public void should_return_true_when_grid_contain_vertical_Alignement() {
+        //given
+        int grid[][] = {
+                {1, 1, 1, 1},
+                {2, 2, 2, 2},
+                {3, 3, 3, 3},
+                {4, 4, 4, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isAligned = gameBoardRules.verticalAligned(0, 0);
+
+        //then
+        assertTrue(isAligned);
+    }
+
+    @Test
+    public void should_return_true_when_grid_does_not_contain_vertical_Alignement() {
+        //given
+        int grid[][] = {
+                {1, 4, 1, 1},
+                {2, 3, 2, 2},
+                {3, 2, 3, 3},
+                {4, 1, 4, 4}};
+        gameBoardRules.getGameBoard().setGrid(grid);
+
+        //when
+        boolean isAligned = gameBoardRules.verticalAligned(0, 0);
+
+        //then
+        assertFalse(isAligned);
     }
 }
