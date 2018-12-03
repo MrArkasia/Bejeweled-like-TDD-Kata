@@ -10,6 +10,7 @@ Just run the jar file by double clicking on it or on the command line
 java -jar Bejeweled-like-TDD-Kata.jar
 ```
 A game window opens
+![game_window](https://drive.google.com/open?id=1sGBhSo6OaMP-iaTLh7IKlOx46E8DCZJc)
 ![game_window](https://imageshack.com/a/img921/8274/TH70jR.png)
 
 
