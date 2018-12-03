@@ -129,7 +129,6 @@ public class GameView extends JPanel implements MouseListener, MouseMotionListen
         // press the mouse button: retrieve the coordinates of the first box
         selectedX = (e.getX() / BOX_SIZE);
         selectedY = (e.getY() / BOX_SIZE);
-        System.out.println("selectedX " + selectedX + " selectedY " + selectedY);
         rePaint();
     }
 

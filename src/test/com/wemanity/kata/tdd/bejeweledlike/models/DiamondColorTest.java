@@ -92,7 +92,7 @@ public class DiamondColorTest {
         //when
 
         //then
-        assertEquals(color, Color.CYAN);
+        assertEquals(color, Color.MAGENTA);
     }
 
     @Test(expected = ArrayIndexOutOfBoundsException.class)

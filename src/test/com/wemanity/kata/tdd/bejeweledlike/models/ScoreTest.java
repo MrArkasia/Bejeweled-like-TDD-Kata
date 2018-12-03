@@ -12,6 +12,7 @@ public class ScoreTest {
     @Before
     public void setUp() throws Exception {
         score = Score.getInstance();
+        score.setValue(0);
     }
 
     @Test
