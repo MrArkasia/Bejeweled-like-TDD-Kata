@@ -20,7 +20,7 @@ java -jar Bejeweled-like-TDD-Kata.jar
 
 A game window opens
 
-![game_window](https://imageshack.com/a/img921/8274/TH70jR.png)
+![game_window](https://imageshack.com/a/img923/7039/IM6WyJ.png)
 
 In command line, it is possible to choose the size of the game grid
 
