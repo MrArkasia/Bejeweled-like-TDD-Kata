@@ -30,7 +30,7 @@ java -jar Bejeweled-like-TDD-Kata.jar 20
 
 The default size is 10. It is not possible to choose a smaller size.
 
-## rules
+## Rules
 
 You have to align three diamonds of the same color. Horizontal or vertical. You can click on a diamond and without releasing the slide to the correct box.
 
