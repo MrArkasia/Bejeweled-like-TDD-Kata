@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="Bejeweled-like-TDD-Kata:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/Bejeweled_like_TDD_Kata_jar</output-path>
-    <root id="archive" name="Bejeweled-like-TDD-Kata.jar">
-      <element id="module-output" name="Bejeweled-like-TDD-Kata" />
-    </root>
-  </artifact>
-</component>
